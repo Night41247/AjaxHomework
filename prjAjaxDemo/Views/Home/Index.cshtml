@@ -1,0 +1,57 @@
+﻿@model IEnumerable<prjAjaxDemo.Models.Category>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles
+{
+<style>
+
+</style>
+}
+
+<ul>
+   
+</ul>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+@section Scripts
+{
+    <script>
+    // function show(data) {
+    //     const promise = new Promise(function (resolve, reject) {
+    //         setTimeout(function () {
+    //             resolve(data)
+    //         }, 1000);
+    //     })
+    //     return promise;
+    // }
+
+    // promise printSomething("A").then(data => {
+    //     console.log(data)
+    //     return printSomething("B")
+    // }).then(data => {
+    //     console.log(data)
+    //     return printSomething("C")
+    // }).then(data => {
+    //     console.log(data)
+    // }).finally(() => {
+    //     console.log("END")
+    // })
+
+    (async () => {
+        let data = await show("A");
+        console.log(data);
+        data = await show("B");
+        console.log(data);
+        data = await show("C");
+        console.log(data);
+    })();
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿@model List<prjAjaxDemo.Models.Spot>
+@{
+    ViewData["Title"] = "Homework1";
+}
+@section Styles
+{
+<style>
+
+</style>
+}
+
+
+
+<h1>Homework1</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4" id="spotContainer">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <div id="spotimg" class="card-img-top">
+                </div>
+                <div id="spottitle" class="card-title"></div>
+                <div id="spotinfo" class="card-text"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script src="~/js/travel.js" ></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 從 travel.js 取資料
+            const data = spots.CommonFormat.Section;
+
+            const spotContainer = document.getElementById('spotContainer');
+            spotContainer.innerHTML = ''; // 清空舊内容
+
+            data.forEach(spot => {
+                const imgSrc = spot.file.img.length > 0 ? spot.file.img[0].text : 'default.jpg';
+                const card = `
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="${imgSrc}" class="card-img-top" alt="${spot.stitle}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${spot.stitle}</h5>
+                                    <p class="card-text">${spot.xbody}</p>
+                                    <p class="card-text"><small class="text-muted">地址: ${spot.address}</small></p>
+                                </div>
+                            </div>
+                        </div>`;
+                spotContainer.insertAdjacentHTML('beforeend', card);
+            });
+        });
+    </script>
+
+    
+}
+
+
+
+
+
+
+

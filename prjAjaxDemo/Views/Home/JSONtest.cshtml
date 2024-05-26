@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "JSONtest";
+}
+
+<h1>JSONtest</h1>
+<ul id="ul1"></ul>
+
+<table id="table1" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年資</td>
+            <td>薪水</td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+@section Styles
+{
+    <style>
+
+
+
+    </style>
+
+
+}
+
+@section Scripts
+{
+       
+    <script>
+
+        //JSON格式 [ 陣列 ] { 物件 }
+        const emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+
+
+   
+
+        // for (let i = 0, max = emp.employees.length; i < max; i++) {
+        //     console.log(emp.employees[i].name);
+        //     console.log(emp.employees[i].workYears);
+        //     console.log(emp.employees[i].salary);
+        // }
+
+        //現在較熱門寫法:map(程式碼較精簡)
+        //將JSON中資料呈現在HTML
+        // const myUl = document.querySelector('#ul1');//抓到要加入資料的標籤id
+        // const emps = emp.employees.map(emp => `<li>${emp.name}</li>`)
+        // myUl.innerHTML = emps.join(""); //join("")用空格連接每筆JSON資料
+
+
+        //用表格呈現
+        //解構賦值(提取陣列或物件中的資料)
+
+        const tb = document.querySelector('#table1>tbody');
+        const emps = emp.employees.map(employee => {
+            //解構賦值
+            const { name, workYears, salary } = employee;  //{ "name": "Tom", "workYears": 3, "salary": 35000 }
+            return (
+                ` <tr>
+                                  <td>${name}</td>
+                                  <td>${workYears}</td>
+                                  <td>${salary}</td>
+                                  </tr>
+                        `
+            )
+        })
+        tb.innerHTML = emps.join("");
+    </script>
+}
